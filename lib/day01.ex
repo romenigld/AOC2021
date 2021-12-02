@@ -1,15 +1,15 @@
 defmodule Day01 do
   @sample ~w/199
-  200
-  208
-  210
-  200
-  207
-  240
-  269
-  260
-  263/
-          |> Enum.map(&String.to_integer/1)
+             200
+             208
+             210
+             200
+             207
+             240
+             269
+             260
+             263/
+             |> Enum.map(&String.to_integer/1)
 
   @report_list "assets/day01.txt"
                |> File.read!()
