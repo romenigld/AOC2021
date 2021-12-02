@@ -1,0 +1,54 @@
+defmodule Day02 do
+  @sample [
+    "forward 5",
+    "down 5",
+    "forward 8",
+    "up 3",
+    "down 8",
+    "forward 2"
+  ]
+
+  @day02_file "assets/day02.txt"
+
+  def parse do
+    @day02_file
+    |> File.read!()
+    |> String.split(~r/\n/, trim: true)
+  end
+
+  def sample_main do
+    @sample
+    |> split_str_by_2()
+    |> parse_str_to_int()
+    |> take_horizontalp_and_depth()
+  end
+
+  def main do
+    parse()
+    |> split_str_by_2()
+    |> parse_str_to_int()
+    |> take_horizontalp_and_depth()
+  end
+
+  def split_str_by_2(list) do
+    list
+    |> Enum.map(&(String.split(&1, " ")))
+  end
+
+  def parse_str_to_int([]), do: []
+  def parse_str_to_int([[x, y] | t]) do
+    [ {x, String.to_integer(y)} | parse_str_to_int(t)]
+  end
+
+  def take_horizontalp_and_depth(list) do
+    {hp, d} =
+            list
+            |> Enum.reduce({_hp = 0, _d = 0}, fn
+              {"forward", value}, {hp, d} -> {hp + value, d}
+              {"down", value}, {hp, d} -> {hp, d + value}
+              {"up", value}, {hp, d} -> {hp, d - value}
+            end)
+
+    hp * d
+  end
+end
