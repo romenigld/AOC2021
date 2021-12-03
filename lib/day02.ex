@@ -74,11 +74,11 @@ defmodule Day02 do
             |> Enum.reduce({0, 0, 0}, fn
               {"forward",  n}, {h, d, a} -> {h + n, d + (a * n), a}
 
-              {"down", n}, {h, d, a} -> {h, d, a - n}
+              {"down", n}, {h, d, a} -> {h, d, a + n}
 
-              {"up", n}, {h, d, a} -> {h, d, a + n}
+              {"up", n}, {h, d, a} -> {h, d, a - n}
             end)
 
-    -(h * d)
+    h * d
   end
 end
