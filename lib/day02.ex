@@ -1,13 +1,14 @@
 defmodule Day02 do
   @sample """
-forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2
-"""
-  |> String.split(~r/\n/, trim: true)
+          forward 5
+          down 5
+          forward 8
+          up 3
+          down 8
+          forward 2
+          """
+          |> String.trim()
+          |> String.split(~r/\n/, trim: true)
 
   @day02_file "assets/day02.txt"
 
