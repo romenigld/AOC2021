@@ -41,15 +41,15 @@ defmodule Day02 do
   end
 
   def take_horizontalp_and_depth(list) do
-    {hp, d} =
+    {h, d} =
             list
-            |> Enum.reduce({_hp = 0, _d = 0}, fn
-              {"forward", value}, {hp, d} -> {hp + value, d}
-              {"down", value}, {hp, d} -> {hp, d + value}
-              {"up", value}, {hp, d} -> {hp, d - value}
+            |> Enum.reduce({_h = 0, _d = 0}, fn
+              {"forward", n}, {h, d} -> {h + n, d}
+              {"down", n}, {h, d} -> {h, d + n}
+              {"up", n}, {h, d} -> {h, d - n}
             end)
 
-    hp * d
+    h * d
   end
 
   # Part 2
