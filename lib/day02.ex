@@ -51,4 +51,34 @@ defmodule Day02 do
 
     hp * d
   end
+
+  # Part 2
+
+  def sample_main2 do
+    @sample
+    |> split_str_by_2()
+    |> parse_str_to_int()
+    |> take_horizontalp_and_depth2()
+  end
+
+  def main2 do
+    parse()
+    |> split_str_by_2()
+    |> parse_str_to_int()
+    |> take_horizontalp_and_depth2()
+  end
+
+  def take_horizontalp_and_depth2(list) do
+    {h, d, _a} =
+            list
+            |> Enum.reduce({0, 0, 0}, fn
+              {"forward",  n}, {h, d, a} -> {h + n, d + (a * n), a}
+
+              {"down", n}, {h, d, a} -> {h, d, a - n}
+
+              {"up", n}, {h, d, a} -> {h, d, a + n}
+            end)
+
+    -(h * d)
+  end
 end
